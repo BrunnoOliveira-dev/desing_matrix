@@ -1,15 +1,15 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('./db'); // Caminho correto para o arquivo de conexão
+const { DataTypes } = require("sequelize");
+const sequelize = require("../config/db"); // Caminho correto para o arquivo de conexão
 
 const Usuario = sequelize.define(
-  'Usuario',
+  "Usuario",
   {
     idUsuario: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    userName: {
+    user_name: {
       type: DataTypes.STRING(150),
       allowNull: false,
     },
@@ -19,12 +19,12 @@ const Usuario = sequelize.define(
       unique: true,
     },
     senha: {
-      type: DataTypes.STRING(25),
+      type: DataTypes.STRING(64),
       allowNull: false,
     },
   },
   {
-    tableName: 'usuario',
+    tableName: "usuario",
     timestamps: false,
   }
 );

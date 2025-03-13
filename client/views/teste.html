@@ -4,22 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planta Baixa - Fabric.js</title>
+    <link rel="stylesheet" href="styleCR.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"></script>
-    <style>
-        canvas {
-            border: 1px solid #000;
-            margin-top: 20px;
-        }
-        #controls {
-            margin-top: 10px;
-        }
-        .plus-symbol {
-            font-size: 50px; /* Aumente o valor para aumentar o tamanho */
-            font-weight: bold;
-            color: #007BFF; /* Cor do símbolo */
-            cursor: pointer;
-        }
-    </style>
+
 </head>
 <body>
     <h1>Planta Baixa com Fabric.js</h1>
@@ -29,10 +16,11 @@
         <button onclick="removerParede()">Remover Parede Selecionada</button>
     </div>
 
-    <canvas id="planta" width="800" height="600"></canvas>
+    <div class="drawing-window">
+        <canvas id="planta" width="800" height="600"></canvas>
+    </div>
 
     <div class="plus-symbol" onclick="criarNovoProjeto()">+</div>
-
     <script>
         const canvas = new fabric.Canvas('planta');
         let modoDesenhar = false;
@@ -42,7 +30,9 @@
         function modoDesenho() {
             modoDesenhar = !modoDesenhar;
             if (modoDesenhar) {
-                alert("Clique no início e no final para desenhar uma parede.");
+                alert("Modo de desenho ativado. Clique no início e no final para desenhar uma parede.");
+            } else {
+                alert("Modo de desenho desativado. Clique novamente para criar uma parede!");
             }
         }
 
@@ -64,7 +54,9 @@
                 } else {
                     const pontoFinal = event.pointer; // Pega o ponto final
                     desenharParede(pontoInicial, pontoFinal);  // Desenha a parede
-                    pontoInicial = null;  // Reseta o ponto inicial para o próximo desenho
+                    pontoInicial = null;  // Reseta o ponto inicial
+                    modoDesenhar = false;  // Desativa o modo de desenho automaticamente
+                    alert("Parede criada. Modo de desenho desativado. Clique novamente para criar outra parede!");
                 }
             }
         });
@@ -89,7 +81,6 @@
 
             canvas.add(parede);
         }
-
         // Função para criar um novo projeto
         function criarNovoProjeto() {
             alert("Novo projeto criado!");

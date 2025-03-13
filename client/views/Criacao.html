@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Planta Baixa - Fabric.js</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"></script>
+    <link rel="stylesheet" href="/css/styleCriacao.css" />
+  </head>
+  <body>
+    <h1>Planta Baixa com Fabric.js</h1>
+    <div id="controls">
+      <!-- Adicionado id para facilitar a alteração do estilo -->
+      <button id="btnModoDesenho" class="button" onclick="toggleModoDesenho()">
+        Modo de Desenho
+      </button>
+      <button class="button" onclick="removerParede()">
+        Remover Parede Selecionada
+      </button>
+      <button class="button" onclick="salvarProjeto()">Salvar Projeto</button>
+      <!-- <button class="button" onclick="carregarProjeto()">
+        Carregar Projeto
+      </button> -->
+      <button class="button" onclick="toggleGrid()">
+        Ativar/Desativar Grade
+      </button>
+      <br>
+      <label for="espessura">Espessura:</label>
+      <input
+        type="range"
+        id="espessura"
+        min="1"
+        max="20"
+        value="5"
+        onchange="updateEspessura(this.value)"
+      />
+      <label for="corParede">Cor da Parede:</label>
+      <input
+        type="color"
+        id="corParede"
+        value="#000000"
+        onchange="updateCor(this.value)"
+      />
+    </div>
+    <div class="drawing-window">
+      <canvas id="planta" width="800" height="600"></canvas>
+    </div>
+    
+    <div class="plus-symbol" onclick="criarNovoProjeto()">+</div>
+    <div id="notification"></div>
+
+    <script src="/js/criacao.js"></script>
+  </body>
+</html>
