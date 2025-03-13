@@ -1,0 +1,106 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #efe3fd; /* Fundo claro e suave */
+    color: #333; /* Texto escuro para melhor legibilidade */
+}
+
+#todo {
+    background-color: #e9fdfd; /* Fundo branco para limpeza visual */
+    width: 90%;
+    max-width: 800px; /* Ajuste responsivo */
+    height: auto; /* Altura dinâmica */
+    margin: 20px auto; /* Centralização com espaçamento */
+    border: 1px solid #ccc; /* Bordas mais leves */
+    border-radius: 10px; /* Cantos arredondados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra elegante */
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+h1 {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #6a0dad; /* Roxo suave */
+    margin-bottom: 20px;
+}
+
+img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%; /* Imagem redonda para perfil */
+    margin: 20px auto;
+    display: block; /* Centraliza no container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona um toque profissional */
+}
+
+h4 {
+    background-color: #f9f9f9; /* Fundo cinza claro */
+    width: fit-content;
+    padding: 10px 15px; /* Espaçamento interno */
+    border-radius: 8px; /* Cantos arredondados */
+    font-size: 1rem;
+    margin-bottom: 10px; /* Distância entre os itens */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra leve */
+}
+
+.dados {
+    text-align: left; /* Alinhamento à esquerda */
+    margin: 20px 0;
+}
+
+form {
+    margin-bottom: 15px; /* Espaço entre formulários */
+}
+
+input {
+    width: 100%; /* Alinha ao tamanho disponível */
+    max-width: 300px; /* Limita a largura máxima */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra interna */
+    font-size: 1rem;
+}
+
+button {
+    background-color: #6a0dad; /* Roxo vibrante */
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Efeito de botão em destaque */
+}
+button:hover {
+    background-color: #5a00b3; /* Cor mais escura no hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra maior */
+}
+
+#apagar {
+    background-color: #f44336; /* Vermelho intenso */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    display: block;
+    position: absolute; 
+    right: 3%;
+    bottom: 1%;
+    margin: 30px auto; /* Centraliza o botão horizontalmente e dá espaço em cima */
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+#apagar:hover {
+    background-color: #d32f2f; /* Tom mais escuro */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
