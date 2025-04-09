@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite"
   },
   "keywords": [],
   "author": "",
@@ -17,10 +18,12 @@
     "pg": "^8.14.1",
     "pg-hstore": "^2.3.4",
     "postgres": "^3.4.5",
+    "three": "^0.174.0",
     "uuid": "^11.1.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.9",
-    "sequelize": "^6.37.5"
+    "sequelize": "^6.37.5",
+    "vite": "^6.2.3"
   }
 }

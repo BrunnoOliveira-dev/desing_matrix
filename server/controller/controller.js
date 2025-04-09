@@ -1,7 +1,9 @@
-const Cliente = require('../controller/cliente');
-const Projeto = require('../controller/projeto');
+const clienteController = require('./cliente');
+const projetoController = require('./projeto');
+const usuarioController = require('../models/usuarioController');
 
 module.exports = {
-    cliente: Cliente,
-    projeto: Projeto
-}
+  cliente: clienteController,
+  projeto: projetoController,
+  usuario: usuarioController,
+};

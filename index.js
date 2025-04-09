@@ -1,17 +1,16 @@
-const express = require('express');
-const path = require('path');
+const express = require("express");
+const path = require("path");
 const app = express();
 const port = 3000;
 
-const router = require('./server/router/router.js');
+const router = require("./server/router/router.js");
 
-
-app.use(express.json())
-app.use(express.static(path.join(__dirname, 'client/src')));
+app.use(express.json());
+app.use(express.static(path.join(__dirname, "client/src")));
+app.use("/node_modules", express.static(path.join(__dirname, "node_modules")));
 
 app.use(router);
 
 app.listen(port, () => {
-  console.log(`Servidor rodando em http://localhost:${port}`);
+	console.log(`Servidor rodando em http://localhost:${port}`);
 });
-

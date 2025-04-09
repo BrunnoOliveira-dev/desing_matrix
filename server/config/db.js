@@ -1,5 +1,6 @@
 const { Sequelize } = require('sequelize');
 
+
 // Configuração para usar o Transaction Pooler do Supabase
 const sequelize = new Sequelize('postgres', 'postgres.cpohawdcarjsqihblabr', 'umasenhasegura', {
   host: 'aws-0-sa-east-1.pooler.supabase.com',
@@ -11,7 +12,7 @@ const sequelize = new Sequelize('postgres', 'postgres.cpohawdcarjsqihblabr', 'um
       rejectUnauthorized: false, // Defina como true se estiver utilizando certificados válidos
     },
   },
-});
+
 
 sequelize.authenticate()
   .then(() => {

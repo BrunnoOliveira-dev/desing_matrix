@@ -9,17 +9,25 @@
 	justify-content: center;
 	align-items: center;
 }
-canvas {
-	border: black; /* Remove a borda padrão do canvas */
-}
 
 body {
 	background-color: rgb(219, 255, 255);
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	gap: 10px;
 }
+
+canvas {
+	border: 2px solid rgb(0, 0, 0);
+	/* background-color: white;  */
+}
+
 /* Controles */
 #controls {
-	margin-top: 15px;
+	width: 65%;
 	text-align: center;
+	
 }
 #controls button {
 	background-color: #6a0dad; /* Roxo vibrante */
@@ -29,11 +37,23 @@ body {
 	padding: 12px 20px;
 	font-size: 16px;
 	cursor: pointer;
-	transition: background-color 0.3s ease;
-	margin: 0 10px;
+	transition: background-color 0.3s ease,  transform 0.2s ease;
+	margin: 10px 10px;
 }
+
 #controls button:hover {
 	background-color: #4b007a; /* Roxo mais escuro no hover */
+	transform: scale(1.05);
+}
+
+#controls #inputs {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 50px;
+	margin-top: 10px;
+	font-size: 20px;
+	font-family: "Arial", sans-serif;
 }
 
 /* Estilo do Título */
