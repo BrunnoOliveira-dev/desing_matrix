@@ -1,18 +1,24 @@
-const { Sequelize } = require("sequelize");
+const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize("desing_data", "root", "", {
-  host: "localhost",
-  password: "1234",
-  dialect: "mysql",
+// Configuração para usar o Transaction Pooler do Supabase
+const sequelize = new Sequelize('postgres', 'postgres.cpohawdcarjsqihblabr', 'umasenhasegura', {
+  host: 'aws-0-sa-east-1.pooler.supabase.com',
+  port: 6543,
+  dialect: 'postgres',
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false, // Defina como true se estiver utilizando certificados válidos
+    },
+  },
 });
 
-sequelize
-  .authenticate()
-  .then(function () {
-    console.log("Conexão realizada com susesso");
+sequelize.authenticate()
+  .then(() => {
+    console.log('Conexão com o banco de dados estabelecida com sucesso.');
   })
-  .catch(function () {
-    console.log("erro na conexão");
+  .catch((error) => {
+    console.error('Erro ao conectar ao banco de dados:', error);
   });
 
 module.exports = sequelize;
