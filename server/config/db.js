@@ -1,8 +1,13 @@
 const { Sequelize } = require("sequelize");
 
-const sequelize = new Sequelize("desing_data", "root", "", {
-  host: "localhost",
-  password: "1234",
+usuarioRoot = "root";  // trocar
+nomeDoBanco = "desing_data";  // trocar
+host = "localhost";
+senha = "1234";  // trocar
+
+const sequelize = new Sequelize(nomeDoBanco, usuarioRoot, "", {
+  host: host,
+  password: senha,
   dialect: "mysql",
 });
 

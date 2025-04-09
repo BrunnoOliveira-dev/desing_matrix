@@ -1,54 +1,51 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Planta Baixa - Fabric.js</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"></script>
-    <link rel="stylesheet" href="/css/styleCriacao.css" />
-  </head>
-  <body>
-    <h1>Planta Baixa com Fabric.js</h1>
-    <div id="controls">
-      <!-- Adicionado id para facilitar a alteração do estilo -->
-      <button id="btnModoDesenho" class="button" onclick="toggleModoDesenho()">
-        Modo de Desenho
-      </button>
-      <button class="button" onclick="removerParede()">
-        Remover Parede Selecionada
-      </button>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Planta Baixa - Fabric.js</title>
+  <!-- Biblioteca do Fabric.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"></script>
+  <!-- Biblioteca do Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Carregador para SVG no Three.js -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/loaders/SVGLoader.js"></script>
+  <!-- Arquivo CSS -->
+  <link rel="stylesheet" href="/css/styleCriacao.css" />
+</head>
+<body>
+  <h1>Planta Baixa com Fabric.js</h1>
+  <div id="controls">
+    <div id="buttons">
+      <button id="btnModoDesenho" class="button" onclick="toggleModoDesenho()">Modo de Desenho</button>
+      <button class="button" onclick="removerParede()">Remover Parede Selecionada</button>
       <button class="button" onclick="salvarProjeto()">Salvar Projeto</button>
-      <!-- <button class="button" onclick="carregarProjeto()">
-        Carregar Projeto
-      </button> -->
-      <button class="button" onclick="toggleGrid()">
-        Ativar/Desativar Grade
-      </button>
-      <br>
-      <label for="espessura">Espessura:</label>
-      <input
-        type="range"
-        id="espessura"
-        min="1"
-        max="20"
-        value="5"
-        onchange="updateEspessura(this.value)"
-      />
-      <label for="corParede">Cor da Parede:</label>
-      <input
-        type="color"
-        id="corParede"
-        value="#000000"
-        onchange="updateCor(this.value)"
-      />
+      <!-- <button class="button" onclick="carregarProjeto()">Carregar Projeto</button> -->
+      <button class="button" onclick="toggleGrid()">Ativar/Desativar Grade</button>
+      <button class="button" onclick="converter_para_3d()">Ver 3d</button>
+      <!-- <button class="button" onclick="undo()">Undo</button> -->
+      <!-- <button class="button" onclick="redo()">Redo</button> -->
     </div>
-    <div class="drawing-window">
-      <canvas id="planta" width="800" height="600"></canvas>
+    <div id="inputs">
+      <div>
+        <label for="espessura">Espessura:</label>
+        <input type="range" id="espessura" min="1" max="20" value="5" onchange="updateEspessura(this.value)" />
+      </div>
+      <div>
+        <label for="corParede">Cor da Parede:</label>
+        <input type="color" id="corParede" value="#000000" onchange="updateCor(this.value)" />
+      </div>
     </div>
-    
-    <div class="plus-symbol" onclick="criarNovoProjeto()">+</div>
-    <div id="notification"></div>
+  </div>
+  
+  <!-- Canvas do Fabric.js -->
+  <canvas id="planta" width="800" height="600"></canvas>
 
-    <script src="/js/criacao.js"></script>
-  </body>
+  
+  <div class="plus-symbol" onclick="criarNovoProjeto()">+</div>
+  <div id="notification"></div>
+  
+  <!-- Scripts customizados -->
+  <script src="/js/criacao.js"></script>
+</body>
 </html>

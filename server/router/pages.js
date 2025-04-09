@@ -39,6 +39,10 @@ router.get("/criacao/:uuid", (req, res) => {
 	res.sendFile(path.join(path_views, "Criacao.html"));
 });
 
+router.get("/teste", async (req, res) => {
+	res.sendFile(path.join(path_views, "teste.html"));
+})
+
 router.post("/cadastro", async (req, res) => {
 	const { userName, email, senha } = req.body;
 
@@ -70,5 +74,7 @@ router.post("/cadastro", async (req, res) => {
 		});
 	}
 });
+
+
 
 module.exports = router;

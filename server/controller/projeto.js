@@ -1,6 +1,4 @@
 const Projeto = require('../models/Projeto');
-const { get } = require('../router/api');
-const { projeto } = require('./controller');
 
 // Endpoint para salvar um projeto
 saveProjeto = async (req, res) => {
@@ -17,7 +15,6 @@ saveProjeto = async (req, res) => {
 };
 
 // Endpoint para carregar um projeto
-
 getProjetoById = async (req, res) => {
     try {
         const projeto = await Projeto.findByPk(req.params.id);
@@ -74,8 +71,6 @@ updateProjeto = async (req, res) => {
         res.status(400).json({ message: error.message });
     }
 };
-
-
 
 module.exports = {
     saveProjeto,
