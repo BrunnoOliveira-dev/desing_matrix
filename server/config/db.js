@@ -11,8 +11,8 @@ const sequelize = new Sequelize('postgres', 'postgres.cpohawdcarjsqihblabr', 'um
       require: true,
       rejectUnauthorized: false, // Defina como true se estiver utilizando certificados válidos
     },
-  },
-
+  }
+});
 
 sequelize.authenticate()
   .then(() => {

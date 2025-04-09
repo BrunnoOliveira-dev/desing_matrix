@@ -69,9 +69,6 @@ function criarParede3D(
 	// Rotaciona para alinhar com a direção da linha
 	wall.rotation.y = -angulo;
 
-	console.log("Start Point:", startPoint);
-	console.log("End Point:", endPoint);
-	console.log("Mid Point:", { x: midX, y: midY });
 
 	return wall;
 }
@@ -82,9 +79,7 @@ function converterJsonParaThree(json, cena) {
 		if (obj.type === "line") {
 			// Calcula os pontos absolutos considerando left e top
 			const startPoint = calcularPontoAbsoluto(obj, { x: obj.x1, y: obj.y1 });
-			console.log(startPoint);
 			const endPoint = calcularPontoAbsoluto(obj, { x: obj.x2, y: obj.y2 });
-			console.log(endPoint);
 			const strokeWidth = obj.strokeWidth || 1;
 			const color = obj.stroke;
 

@@ -29,13 +29,13 @@ router.get("/projeto", (req, res) => {
 
 router.get("/criacao", (req, res) => {
   const newUuid = uuid.v4();
-  console.log(newUuid); // 123e4567-e89b-12d3-a456-426614174000
+//   console.log(newUuid); // 123e4567-e89b-12d3-a456-426614174000
   res.redirect(`/criacao/${newUuid}`);
 });
 
 router.get("/criacao/:uuid", (req, res) => {
 	const uuidBody = req.params.uuid;
-	console.log(uuidBody); // 123e4567-e89b-12d3-a456-426614174000
+	// console.log(uuidBody); // 123e4567-e89b-12d3-a456-426614174000
 	res.sendFile(path.join(path_views, "Criacao.html"));
 });
 

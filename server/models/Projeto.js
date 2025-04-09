@@ -33,7 +33,8 @@ const Projeto = sequelize.define(
   },
   {
     tableName: "projetos",
-    timestamps: true,
+    // timestamps: true,
+    timestamps: false,
   }
 );
 

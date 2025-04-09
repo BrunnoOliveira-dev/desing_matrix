@@ -373,4 +373,3 @@ function converter_para_3d() {
     localStorage.setItem("dados3D", json);
     window.location.href = "/teste";
 }
-
