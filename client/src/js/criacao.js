@@ -1,4 +1,3 @@
-
 const canvas = new fabric.Canvas("planta");
 let modoDesenho = false;
 let drawingObject = null; // Objeto que está sendo desenhado
@@ -35,9 +34,12 @@ async function verificarUUID() {
 
             canvas.loadFromJSON(data.data, function () {
                 canvas.renderAll();
-                notificar("Projeto carregado com sucesso!");
+                console.log("Projeto carregado com sucesso!");
                 // updateThreeScene(); // Atualiza a cena 3D
+
             });
+            alterarCorDeFundo('#f0f0f0'); // Define a cor de fundo como cinza claro
+            saveState()
             return true; // Projeto existe
         }
     } catch (error) {
@@ -47,13 +49,7 @@ async function verificarUUID() {
 }
 verificarUUID();
 
-// Função para exibir notificações
-function notificar(mensagem, cor = "green") {
-    const notification = document.getElementById("notification");
-    notification.style.color = cor;
-    notification.textContent = mensagem;
-    setTimeout(() => (notification.textContent = ""), 3000);
-}
+
 
 // Funções para desenhar e limpar a grade
 function desenharGrade() {
@@ -94,10 +90,10 @@ function toggleGrid() {
     gridAtivo = !gridAtivo;
     if (gridAtivo) {
         desenharGrade();
-        notificar("Grade ativada");
+        console.log("Grade ativada");
     } else {
         limparGrade();
-        notificar("Grade desativada");
+        console.log("Grade desativada");
     }
     canvas.renderAll();
 }
@@ -115,12 +111,12 @@ function toggleModoDesenho() {
     const btn = document.getElementById("btnModoDesenho");
     if (modoDesenho) {
         btn.style.backgroundColor = "#4CAF50"; // Verde enquanto ativo
-        notificar(
+        console.log(
             "Modo de desenho ativado. Clique, arraste e solte para desenhar uma parede."
         );
     } else {
         btn.style.backgroundColor = "";
-        notificar("Modo de desenho desativado.");
+        console.log("Modo de desenho desativado.");
     }
 }
 
@@ -164,14 +160,15 @@ canvas.on("mouse:up", function () {
             Math.abs(drawingObject.y2 - drawingObject.y1) < 5
         ) {
             canvas.remove(drawingObject);
-            notificar("Parede muito curta, desenhe novamente.", "red");
+            console.log("Parede muito curta, desenhe novamente.", "red");
         } else {
             drawingObject.set({ selectable: true });
-            // saveState(); // Salva o estado após desenhar uma parede
+            
             // updateThreeScene(); // Atualiza a cena 3D
         }
         drawingObject = null;
         startPoint = null;
+        saveState(); // Salva o estado após desenhar uma parede
     }
 });
 
@@ -184,10 +181,10 @@ function removerParede() {
         });
         canvas.discardActiveObject();
         saveState(); // Salva o estado após remover uma parede
-        notificar("Paredes removidas.");
+        console.log("Paredes removidas.");
         // updateThreeScene(); // Atualiza a cena 3D
     } else {
-        notificar("Selecione uma ou mais paredes para remover.", "red");
+        console.log("Selecione uma ou mais paredes para remover.", "red");
     }
 }
 
@@ -200,7 +197,7 @@ function criarNovoProjeto() {
     ) {
         canvas.clear();
         if (gridAtivo) toggleGrid(); // Reaplica a grade, se estiver ativa
-        notificar("Novo projeto criado.");
+        console.log("Novo projeto criado.");
         // updateThreeScene(); // Atualiza a cena 3D
     }
 }
@@ -208,35 +205,43 @@ function criarNovoProjeto() {
 // Funções de Undo e Redo
 function saveState() {
     const json = JSON.stringify(canvas.toJSON());
-    undoStack.push(json);
-    redoStack = []; // Limpa o stack de redo
+    console.log(json);
+    if (undoStack.length === 0 || undoStack[undoStack.length - 1] !== json) {
+        undoStack.push(json);
+        redoStack = []; // Limpa o stack de redo
+    }
+    console.log(json);
+    console.log("aaa");
 }
 
 function undo() {
-    if (undoStack.length > 0) {
-        const json = undoStack.pop();
-        redoStack.push(JSON.stringify(canvas.toJSON()));
+    if (undoStack.length > 1) { // Garante que o estado inicial não seja perdido
+        const json = undoStack.pop(); // Remove o último estado do undoStack
+        redoStack.push(JSON.stringify(canvas.toJSON())); // Salva o estado atual no redoStack
         canvas.loadFromJSON(json, function () {
             canvas.renderAll();
-            // updateThreeScene(); // Atualiza a cena 3D
+            console.log("Undo realizado.");
         });
-        notificar("Undo realizado.");
+    } else if (undoStack.length === 1) {
+        canvas.loadFromJSON(undoStack[0], function () {
+            canvas.renderAll();
+            console.log("Undo realizado.");
+        });
     } else {
-        notificar("Nada para desfazer.", "red");
+        console.log("Nada para desfazer.", "red");
     }
 }
 
 function redo() {
     if (redoStack.length > 0) {
-        const json = redoStack.pop();
-        undoStack.push(JSON.stringify(canvas.toJSON()));
+        const json = redoStack.pop(); // Remove o último estado do redoStack
+        undoStack.push(JSON.stringify(canvas.toJSON())); // Salva o estado atual no undoStack
         canvas.loadFromJSON(json, function () {
             canvas.renderAll();
-            // updateThreeScene(); // Atualiza a cena 3D
+            console.log("Redo realizado.");
         });
-        notificar("Redo realizado.");
     } else {
-        notificar("Nada para refazer.", "red");
+        console.log("Nada para refazer.", "red");
     }
 }
 
@@ -259,10 +264,10 @@ function copy() {
     if (activeObject) {
         activeObject.clone(function (cloned) {
             clipboard = cloned;
-            notificar("Objeto copiado.");
+            console.log("Objeto copiado.");
         });
     } else {
-        notificar("Nenhum objeto selecionado para copiar.", "red");
+        console.log("Nenhum objeto selecionado para copiar.", "red");
     }
 }
 
@@ -290,10 +295,10 @@ function paste() {
             canvas.requestRenderAll();
             saveState(); // Salva o estado após colar um objeto
             // updateThreeScene(); // Atualiza a cena 3D
-            notificar("Objeto colado.");
+            console.log("Objeto colado.");
         });
     } else {
-        notificar("Nenhum objeto copiado para colar.", "red");
+        console.log("Nenhum objeto copiado para colar.", "red");
     }
 }
 
@@ -303,11 +308,11 @@ canvas.on("object:modified", function () {
     // updateThreeScene(); // Atualiza a cena 3D
 });
 
-// Evento para salvar o estado antes de mover um objeto
-canvas.on("object:moving", function () {
-    saveState();
-    // updateThreeScene(); // Atualiza a cena 3D
-});
+// // Evento para salvar o estado antes de mover um objeto
+// canvas.on("object:moved", function () {
+//     saveState();
+//     // updateThreeScene(); // Atualiza a cena 3D
+// });
 
 // seção de salvar projeto
 
@@ -338,7 +343,7 @@ async function salvarProjeto() {
         })
             .then((response) => response.json())
             .then(() => {
-                notificar("Projeto salvo com sucesso!");
+                console.log("Projeto salvo com sucesso!");
             })
             .catch((error) => {
                 console.error(
@@ -346,7 +351,7 @@ async function salvarProjeto() {
                     error
                 );
                 localStorage.setItem("projetoPlanta", json);
-                notificar("Projeto salvo localmente.");
+                console.log("Projeto salvo localmente.");
             });
     }
 }
@@ -361,7 +366,7 @@ async function atualizarProjeto() {
             body: JSON.stringify(criarJson()),
         });
         if (response.status === 200) {
-            notificar("Projeto atualizado com sucesso!");
+            console.log("Projeto atualizado com sucesso!");
         }
     } catch (err) {
         console.error("Erro ao atualizar projeto", err);
@@ -369,7 +374,18 @@ async function atualizarProjeto() {
 }
 
 function converter_para_3d() {
+    limparGrade()
+    
     const json = JSON.stringify(criarJson())
     localStorage.setItem("dados3D", json);
-    window.location.href = "/teste";
+    window.location.href = "/3d";
+}
+
+// Altera a cor de fundo do canvas
+function alterarCorDeFundo(cor) {
+    canvas.setBackgroundColor(cor, canvas.renderAll.bind(canvas));
+}
+
+function voltarParaProjeto() {
+    window.location.href = "/projeto";
 }

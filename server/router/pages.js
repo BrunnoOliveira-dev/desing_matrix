@@ -39,8 +39,8 @@ router.get("/criacao/:uuid", (req, res) => {
 	res.sendFile(path.join(path_views, "Criacao.html"));
 });
 
-router.get("/teste", async (req, res) => {
-	res.sendFile(path.join(path_views, "teste.html"));
+router.get("/3d", async (req, res) => {
+	res.sendFile(path.join(path_views, "3d.html"));
 })
 
 router.post("/cadastro", async (req, res) => {

@@ -192,9 +192,9 @@ function criarCena3D(jsonData) {
 		renderer.render(cena, camera);
 
 		// Log da posição da câmera
-		console.log(
-			`Posição da câmera: x=${camera.position.x}, y=${camera.position.y}, z=${camera.position.z}`
-		);
+		// console.log(
+		// 	`Posição da câmera: x=${camera.position.x}, y=${camera.position.y}, z=${camera.position.z}`
+		// );
 	}
 	animate();
 

@@ -22,7 +22,6 @@ document
 			const data = await response.json();
 
 			if (response.ok) {
-				alert("Login realizado com sucesso!");
 
 				localStorage.setItem("token", data.token);
 				localStorage.setItem("user", JSON.stringify(data.user));
